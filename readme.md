@@ -1,3 +1,11 @@
-# Basic User Auth
+# Somewhat Secure Profiles
 
-First, cd into the project directory, and do `npm run setup` to install the dependencies listed in the package.json and bower.json.  Then you can start the server in Node.
+Allows users to securely login and create/edit a profile with
+
+- a profile picture,
+- a username,
+- a password,
+- an email, and
+- a birthday.
+
+Deployed to Heroku at https://babelthuap-user-auth.herokuapp.com/
