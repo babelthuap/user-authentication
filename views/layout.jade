@@ -17,13 +17,13 @@ html(lang='en')
           a.navbar-brand(href='/') Home
         #nav-collapse.collapse.navbar-collapse
           ul.nav.navbar-nav.navbar-right
-            li
+            li#editLink
               a(href='/profile') Edit Your Profile
-            li
-              a(href='/register')#registerLink Register
-            li
-              a(href='/login')#loginLink Login
-            li
+            li#registerLink
+              a(href='/register') Register
+            li#loginLink
+              a(href='/login') Login
+            li#logoutLink
               a#logout Logout
 
     block content

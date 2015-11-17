@@ -2,11 +2,12 @@
 
 $(function(){
   $('#register').click(register);
+  $('input').on('keypress', function(e) {
+    if (e.keyCode === 13) register();
+  });
 })
 
-function register(e) {
-  e.preventDefault();
-
+function register() {
   var username = $('#username').val();
   var pass1 = $('#pass1').val();
   var pass2 = $('#pass2').val();

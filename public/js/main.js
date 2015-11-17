@@ -3,6 +3,12 @@
 $(document).ready(init);
 
 function init() {
+  if (document.cookie) {
+    $('#editLink, #logoutLink').show();
+  } else {
+    $('#registerLink, #loginLink').show();
+  }
+
   $('#logout').click(logout);
 }
 

@@ -2,11 +2,12 @@
 
 $(function(){
   $('#login').click(login);
+  $('input').on('keypress', function(e) {
+    if (e.keyCode === 13) login();
+  });
 })
 
-function login(e) {
-  e.preventDefault();
-
+function login() {
   var username = $('#username').val();
   var pass = $('#pass').val();
 
