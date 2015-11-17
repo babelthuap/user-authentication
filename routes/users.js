@@ -26,6 +26,14 @@ router.post('/login', function(req, res) {
   });
 });
 
+router.put('/update', function(req, res) {
+  User.update(req.body, function(err, foundUser) {
+    res.cookie('username', foundUser.username);
+    res.cookie('userId', foundUser._id.toString());
+    res.status(err ? 400 : 200).send(err || foundUser);
+  })
+})
+
 router.post('/logout', function(req, res) {
   res.clearCookie('username');
   res.clearCookie('userId');

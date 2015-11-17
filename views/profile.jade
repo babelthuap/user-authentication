@@ -4,6 +4,7 @@ block css
   link(href='css/style.css', rel='stylesheet')
 
 block content
+  #userId= user._id
   .container
     .jumbotron
       .row
@@ -13,28 +14,33 @@ block content
           span= possesive
           |  Profile
       hr
-      .row
+      p
         i: strong Profile Picture:
         br
-        img(src=user.picture, alt="profile picture")
+        img#picture(src=user.picture, alt="profile picture")
         br
-        input(type="text" placeholder="URL")
-      .row
+        input#pictureInput(type="text" placeholder="URL", size="36")
+      p
         i: strong Username: 
-        span= name
+        span#username= name
         br
-        input(type="text")
-      .row
+        input#usernameInput(type="text", size="36")
+      p
+        i: strong Password: 
+        span#password ----
+        br
+        input#passwordInput(type="text", size="36")
+      p
         i: strong Email: 
-        span= email
+        span#email= user.email
         br
-        input(type="text")
-      .row
+        input#emailInput(type="text", size="36")
+      p
         i: strong Birthday: 
-        span= birthday
+        span#birthday= user.birthday
         br
-        input(type="text")
-      .row
+        input#birthdayInput(type="text", size="36")
+      p
         button.btn.btn-lg.btn-danger#save Save
 
 block js

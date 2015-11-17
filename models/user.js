@@ -17,6 +17,9 @@ var userSchema = Schema({
 userSchema.statics.register = function(user, cb) {
   var username = user.username;
   var password = user.password;
+  var picture = user.picture;
+  var email = user.email;
+  var birthday = user.birthday;
   User.findOne({username: username}, function(err, user){
     if(err || user) return cb(err || 'Username already taken.');
     bcrypt.genSalt(13, function(err1, salt) {
@@ -25,11 +28,23 @@ userSchema.statics.register = function(user, cb) {
         var newUser = new User();
         newUser.username = username;
         newUser.password = hash;
+        newUser.picture = picture;
+        newUser.email = email;
+        newUser.birthday = birthday;
         newUser.save(function(err, savedUser){
           savedUser.password = null;
           cb(err, savedUser);
         });
       });
+    });
+  });
+};
+
+userSchema.statics.update = function(user, cb) {
+  User.findOneAndRemove({_id: user._id}, function(err) {
+    User.register(user, function(err, savedUser){
+      if (err) return cb(err);
+      cb(err, savedUser);
     });
   });
 };
