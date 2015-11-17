@@ -21,7 +21,7 @@ function register(e) {
       window.location.replace('/login');
     })
     .fail(function(err){
-      swal('Error:', err, 'error');
+      swal('Error:', 'Username already taken.', 'error');
     });
   }
 }

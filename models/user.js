@@ -11,10 +11,12 @@ var userSchema = Schema({
   password: { type: String, required: true },
   picture: { type: String, default: 'http://www.politicspa.com/wp-content/uploads/2013/02/Silhouette-question-mark.jpeg'},
   email: String,
-  birthday: String
+  birthday: String,
+  passwordIsHashed: Boolean
 });
 
 userSchema.statics.register = function(user, cb) {
+  var passwordIsHashed = user.passwordIsHashed;
   var username = user.username;
   var password = user.password;
   var picture = user.picture;
@@ -27,7 +29,7 @@ userSchema.statics.register = function(user, cb) {
         if(err1 || err2) return cb(err1 || err2);
         var newUser = new User();
         newUser.username = username;
-        newUser.password = hash;
+        newUser.password = passwordIsHashed ? password : hash;
         newUser.picture = picture;
         newUser.email = email;
         newUser.birthday = birthday;
@@ -41,7 +43,10 @@ userSchema.statics.register = function(user, cb) {
 };
 
 userSchema.statics.update = function(user, cb) {
-  User.findOneAndRemove({_id: user._id}, function(err) {
+  User.findOneAndRemove({_id: user._id}, function(err, deletedUser) {
+    console.log('deletedUser:', deletedUser);
+    user.password = deletedUser.password;
+    user.passwordIsHashed = true;
     User.register(user, function(err, savedUser){
       if (err) return cb(err);
       cb(err, savedUser);
