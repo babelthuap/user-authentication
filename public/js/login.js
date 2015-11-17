@@ -18,6 +18,6 @@ function login() {
   .fail(function(err){
     $('#username').val('');
     $('#pass').val('');
-    swal('No Beans For You!', 'Incorrect username or password.', 'error');
+    swal('No Cookies For You!', 'Incorrect username or password.', 'error');
   });
 }
