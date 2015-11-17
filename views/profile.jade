@@ -1,0 +1,41 @@
+extends ./layout
+
+block css
+  link(href='css/style.css', rel='stylesheet')
+
+block content
+  .container
+    .jumbotron
+      .row
+        - var name = user.username
+        - var possesive = name + (name.slice(-1) === 's' ? "'" : "'s")
+        h1
+          span= possesive
+          |  Profile
+      hr
+      .row
+        i: strong Profile Picture:
+        br
+        img(src=user.picture, alt="profile picture")
+        br
+        input(type="text" placeholder="URL")
+      .row
+        i: strong Username: 
+        span= name
+        br
+        input(type="text")
+      .row
+        i: strong Email: 
+        span= email
+        br
+        input(type="text")
+      .row
+        i: strong Birthday: 
+        span= birthday
+        br
+        input(type="text")
+      .row
+        button.btn.btn-lg.btn-danger#save Save
+
+block js
+  script(src='js/profile.js')

@@ -5,14 +5,17 @@ block css
 
 block content
   .container
-    div
-      .form-group
-        label(for='username') Username
-        input#username.form-control(type='text', placeholder='Username')
-      .form-group
-        label(for='pw') Password
-        input#pw.form-control(type='password', placeholder='Password')
-      button.btn.btn-default#login Login
+    .jumbotron
+      .row
+        h1 Login
+      hr
+      .row
+        p: strong Username
+        input#username(type='text', size='30') 
+      .row
+        p: strong Password
+        input#pass(type='password', size='30')
+      button.btn.btn-lg.btn-danger#login Login
 
 block js
   script(src='js/login.js')

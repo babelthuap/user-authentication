@@ -2,13 +2,16 @@
 
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-var bcrypt = require('bcrypt');
+var bcrypt = require('bcryptjs');
 
 var User;
 
 var userSchema = Schema({
   username: { type: String, required: true, unique: true },
-  password: { type: String, required: true }
+  password: { type: String, required: true },
+  picture: { type: String, default: 'http://www.politicspa.com/wp-content/uploads/2013/02/Silhouette-question-mark.jpeg'},
+  email: String,
+  birthday: String
 });
 
 userSchema.statics.register = function(user, cb) {
@@ -31,11 +34,12 @@ userSchema.statics.register = function(user, cb) {
   });
 };
 
+var errMessage = 'Incorrect username or password.';
 userSchema.statics.authenticate = function(inputUser, cb){
   User.findOne({username: inputUser.username}, function(err, dbUser) {
-    if(err || !dbUser) return cb(err || 'Incorrect username or password.');
+    if(err || !dbUser) return cb(err || errMessage);
     bcrypt.compare(inputUser.password, dbUser.password, function(err, isGood){
-      if(err || !isGood) return cb(err || 'Incorrect username or password.');
+      if(err || !isGood) return cb(err || errMessage);
       dbUser.password = null;
       cb(null, dbUser);
     });

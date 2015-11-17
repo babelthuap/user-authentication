@@ -4,7 +4,7 @@ var express = require('express');
 var router = express.Router();
 
 router.get('/', function(req, res) {
-  res.render('index', {title: 'Auth'});
+  res.render('index', {title: 'Somewhat Secure Profiles'});
 });
 
 router.get('/register', function(req, res) {

@@ -1,0 +1,25 @@
+a {
+  cursor: pointer;
+}
+
+body {
+  background-color: cadetblue;
+}
+
+.jumbotron {
+  padding-left: 2em;
+  padding-right: 1em;
+}
+
+input {
+  margin-bottom: 1em;
+  padding: 3px;
+}
+
+button {
+  margin-top: 16px;
+}
+
+img {
+  max-width: 150px;
+}

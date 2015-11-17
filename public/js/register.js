@@ -8,15 +8,15 @@ function register(e) {
   e.preventDefault();
 
   var username = $('#username').val();
-  var pw1 = $('#pw1').val();
-  var pw2 = $('#pw2').val();
+  var pass1 = $('#pass1').val();
+  var pass2 = $('#pass2').val();
 
-  if(pw1 !== pw2){
-    $('#pw1').val('');
-    $('#pw2').val('');
+  if(pass1 !== pass2 && username){
+    $('#pass1').val('');
+    $('#pass2').val('');
     swal('Error:', 'Passwords do not match.', 'error');
   } else {
-    $.post('/users/register', {username: username, password: pw1})
+    $.post('/users/register', {username: username, password: pass1})
     .done(function(data){
       window.location.replace('/login');
     })

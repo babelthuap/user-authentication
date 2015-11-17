@@ -6,17 +6,17 @@ $(function(){
 
 function login(e) {
   e.preventDefault();
-  console.log('login');
 
   var username = $('#username').val();
-  var pw = $('#pw').val();
+  var pass = $('#pass').val();
 
-  $.post('/users/login', {username: username, password: pw})
+  $.post('/users/login', {username: username, password: pass})
   .done(function(data){
-    console.log(data);
+    window.location.replace('/profile');
   })
   .fail(function(err){
-    swal('Error:', err, 'error');
+    $('#username').val('');
+    $('#pass').val('');
+    swal('No Beans For You!', 'Incorrect username or password.', 'error');
   });
-
 }
